@@ -14,7 +14,10 @@ st.write(
 )
 
 # session = get_active_session()
-my_dataframe = session.table("smoothies.public.fruit_options").select(col("Fruit_Name"))
+my_dataframe = session.table("smoothies.public.fruit_options").select(col("Fruit_Name"),col("Search_on"))
+st.dataframe(my_dataframe,use_container_width=True)
+st.stop()
+
 
 # st.dataframe(data=my_dataframe, use_container_width=True)
 name_on_order = st.text_input('Name on the smoothie:')
@@ -36,9 +39,7 @@ if ingredient_list:
     
     # st.write(my_insert_stmt)
     # st.stop()
-    smoothiefroot_response = requests.get("https://FRUITYVICE.com/api/fruit/watermelon")
-    sf_df=st.dataframe(data=smoothiefroot_response.json(),use_container_width=True)
-  
+      
     time_to_insert = st.button('Submit Order')
 
     if time_to_insert:
